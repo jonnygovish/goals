@@ -28,7 +28,7 @@ export class GoalComponent implements OnInit {
       
       if (toDelete){
         this.goals.splice(index,1);
-        this.alertService.alertMe("Goal has been deleted")
+        this.alertService.alertMe("Goal has been deleted.")
       }
     }
   }
