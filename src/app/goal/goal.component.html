@@ -23,11 +23,12 @@
         </div>
         
         <div class="row" *ngIf="goal.showDescription">
-        <app-goal-details  [goal]='goal' (isComplete)= 'deleteGoal($event,i)'></app-goal-details>
+            <app-goal-details  [goal]='goal' (isComplete)= 'deleteGoal($event,i)'></app-goal-details>
+        </div>
+        
     </div>
     
 </div>
 
-</div>
-
 <p *ngIf='goals.length > 5'>You have too many goals</p>
+<ng-progress></ng-progress>

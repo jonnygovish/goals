@@ -1,15 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Goal } from '../goal';
 import { Goals } from '../goals';
 import { GoalService } from '../goals/goal.service';
 import { AlertsService } from '../alert-service/alerts.service';
+import {QuoteRequestService} from '../quote-http/quote-request.service'
 import { Quote } from '../quote-class/quote';
 
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
-  providers:[GoalService],
+  providers:[GoalService,QuoteRequestService],
   styleUrls: ['./goal.component.css']
 })
 export class GoalComponent implements OnInit {
@@ -36,7 +37,7 @@ export class GoalComponent implements OnInit {
     }
   }
   
-  constructor(goalService:GoalService, alertService:AlertsService, private http:HttpClient){
+  constructor(goalService:GoalService, alertService:AlertsService, private quoteService: QuoteRequestService){
     this.goals = goalService.getGoals()
     this.alertService = alertService;
   }
@@ -46,13 +47,7 @@ export class GoalComponent implements OnInit {
 
 
   ngOnInit() {
-
-    interface ApiResponse{
-      quote: string;
-      author: string
-    }
-    this.http.get<ApiResponse>("https://talaikis.com/api/quotes/random/").subscribe(data=>{
-      this.quote = new Quote(data.quote, data.author)
-    })
+    this.quoteService.quoteRequest()
+    this.quote = this.quoteService.quote
   }
 }
