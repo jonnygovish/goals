@@ -1,3 +1,4 @@
+import {RoutingModule} from './routing/routing.module'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -13,6 +14,11 @@ import { GoalDetailsComponent } from './goal-details/goal-details.component';
 import { StrikethroughDirective } from './strikethrough.directive';
 import { DateCountPipe } from './date-count.pipe';
 import { GoalFormComponent } from './goal-form/goal-form.component';
+import { AboutComponent } from './about/about.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+
 
 @NgModule({
   declarations: [
@@ -21,15 +27,18 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
     GoalDetailsComponent,
     StrikethroughDirective,
     DateCountPipe,
-    GoalFormComponent
+    GoalFormComponent,
+    AboutComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
+    RoutingModule,
     FormsModule,
     HttpClientModule,
     NgProgressModule.forRoot(),// normal progress bar,
-    NgProgressHttpModule // progress bar to load http requests
-
+    NgProgressHttpModule, // progress bar to load http requests
+    
   ],
   providers: [AlertsService], //Add service to providers
   bootstrap: [AppComponent]

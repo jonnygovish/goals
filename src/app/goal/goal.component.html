@@ -1,3 +1,4 @@
+<ng-progress></ng-progress>
 <h1>My Goals</h1>
 <div class="container">
 
@@ -9,26 +10,26 @@
     </div>
     
 </div>
+
+<!-- Form container -->
 <div class="container">
     <div class="row">
         <app-goal-form (addGoal)="addNewGoal($event)" ></app-goal-form>
     </div>
 </div>
+<!-- form container end -->
 <hr>
 <div class="container">
     <div class="row" *ngFor="let goal of goals;let i = 'index'">
         <div class="row">
             <h4 id="{{i}}" appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h4>
-            <button class="btn btn-primary btn-sm" (click)='toogleDetails(i)'>Toogle Details</button>
+            <button class="btn btn-primary btn-sm" (click) = goToUrl(goal.id)>View Details</button>
+            <button class="btn btn-danger btn-sm" (click)='deleteGoal(i)'>Delete Goal</button>
         </div>
         
-        <div class="row" *ngIf="goal.showDescription">
-            <app-goal-details  [goal]='goal' (isComplete)= 'deleteGoal($event,i)'></app-goal-details>
-        </div>
         
     </div>
     
 </div>
 
 <p *ngIf='goals.length > 5'>You have too many goals</p>
-<ng-progress></ng-progress>
